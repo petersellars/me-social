@@ -1,0 +1,28 @@
+CREATE (AgileAuckland:Event {name:'Agile Auckland', date:'12/12/2014', time:'20:00'})
+CREATE (ContinuousDelivery:Event {name:'Continous Delivery', date:'12/12/2014', time:'20:00'})
+CREATE (ABvAussie:Event {name:'AB vs. Aussie', date:'12/12/2014', time:'20:00'})
+
+CREATE (Meetup:EventType { type:'meetup' })
+CREATE (Sport:EventType { type:'sport' })
+
+CREATE (AgileAuckland)-[:TYPE_OF]->(Meetup)
+CREATE (ContinuousDelivery)-[:TYPE_OF]->(Meetup)
+CREATE (ABvAussie)-[:TYPE_OF]->(Sport)
+
+CREATE (SportsFan:Trait {name:'SportsFan'})
+CREATE (Geek:Trait {name:'Geek'})
+
+CREATE (Geek)-[:ENJOYS]->(Meetup)
+CREATE (SportsFan)-[:ENJOYS]->(Sport)
+
+CREATE (GeekSportsFan:Personality {name:'Geeks Who Like Sport!'})
+
+CREATE (GeekSportsFan)-[:HAS_TRAIT]->(Geek)
+CREATE (GeekSportsFan)-[:HAS_TRAIT]->(SportsFan)
+
+CREATE (BaseProfile:Profile {name:'Base Profile'})
+
+CREATE (BaseProfile)-[:HAS_PERSONALITY]->(GeekSportsFan)
+
+RETURN AgileAuckland
+;  
